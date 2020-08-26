@@ -161,8 +161,8 @@ project.ext.diffChangelogFile = "src/main/resources/config/liquibase/changelog/"
 liquibase {
     activities {
         main {
-            driver "org.postgresql.Driver"
-            url "jdbc:postgresql://localhost:5432/contacts"
+            driver "org.h2.Driver"
+            url "jdbc:h2:file:./build/h2db/db/contacts"
             username "contacts"
             password ""
             changeLogFile "src/main/resources/config/liquibase/master.xml"
@@ -171,12 +171,12 @@ liquibase {
             classpath "src/main/resources/"
         }
         diffLog {
-            driver "org.postgresql.Driver"
-            url "jdbc:postgresql://localhost:5432/contacts"
+            driver "org.h2.Driver"
+            url "jdbc:h2:file:./build/h2db/db/contacts"
             username "contacts"
             password ""
             changeLogFile project.ext.diffChangelogFile
-            referenceUrl "hibernate:spring:io.github.contacts.domain?dialect=io.github.jhipster.domain.util.FixedPostgreSQL10Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+            referenceUrl "hibernate:spring:io.github.contacts.domain?dialect=org.hibernate.dialect.H2Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
             defaultSchemaName ""
             logLevel "debug"
             classpath "$buildDir/classes/java/main"
@@ -302,6 +302,7 @@ dependencies {
     testImplementation "com.tngtech.archunit:archunit-junit5-api:${archunit_junit5_version}"
     testRuntimeOnly "com.tngtech.archunit:archunit-junit5-engine:${archunit_junit5_version}"
     testImplementation "com.h2database:h2"
+    liquibaseRuntime "com.h2database:h2"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
 

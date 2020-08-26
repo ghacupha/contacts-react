@@ -34,7 +34,7 @@ spring:
   devtools:
     restart:
       enabled: true
-      additional-exclude: static/**
+      additional-exclude: static/**,.h2.server.properties
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
   jackson:
@@ -42,14 +42,17 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/contacts
+    url: jdbc:h2:file:./build/h2db/db/contacts;DB_CLOSE_DELAY=-1
     username: contacts
     password:
     hikari:
       poolName: Hikari
       auto-commit: false
+  h2:
+    console:
+      enabled: false
   jpa:
-    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL10Dialect
+    database-platform: io.github.jhipster.domain.util.FixedH2Dialect
     show-sql: true
   data:
     elasticsearch:
@@ -70,7 +73,7 @@ spring:
     cache: false
 
 server:
-  port: 8080
+  port: 8980
 
 # ===================================================================
 # JHipster specific properties
@@ -96,7 +99,7 @@ jhipster:
       # security key (this key should be unique for your application, and kept secret)
       key: 62f119c4a7dde385c1a89edee90ba93401882ce866972bbdef3137194677426895943928e8224aa184b150390e2fb5aa6ac0
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://127.0.0.1:8080
+    base-url: http://127.0.0.1:8980
   metrics:
     logs: # Reports metrics in the logs
       enabled: false

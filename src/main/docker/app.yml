@@ -11,7 +11,7 @@ services:
       - SPRING_DATA_JEST_URI=http://contacts-elasticsearch:9200
       - SPRING_ELASTICSEARCH_REST_URIS=http://contacts-elasticsearch:9200
     ports:
-      - 8080:8080
+      - 8980:8980
   contacts-postgresql:
     extends:
       file: postgresql.yml

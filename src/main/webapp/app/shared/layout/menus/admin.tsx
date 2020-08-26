@@ -38,10 +38,18 @@ const swaggerItem = (
   </MenuItem>
 );
 
-export const AdminMenu = ({ showSwagger }) => (
+const databaseItem = (
+  <DropdownItem tag="a" href="./h2-console" target="_tab">
+    <FontAwesomeIcon icon="hdd" fixedWidth /> Database
+  </DropdownItem>
+);
+
+export const AdminMenu = ({ showSwagger, showDatabase }) => (
   <NavDropdown icon="user-plus" name="Administration" style={{ width: '140%' }} id="admin-menu">
     {adminMenuItems}
     {showSwagger && swaggerItem}
+
+    {showDatabase && databaseItem}
   </NavDropdown>
 );
 
