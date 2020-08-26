@@ -146,15 +146,15 @@ jhipster:
     from: contacts@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: contacts API
-    description: contacts API documentation
+    title: Contacts API
+    description: Contacts API documentation
     version: 0.0.1
     terms-of-service-url:
-    contact-name:
-    contact-url:
-    contact-email:
-    license: unlicensed
-    license-url:
+    contact-name: Edwin Njeru
+    contact-url: https://github.com/ghacupha
+    contact-email: mailnjeru@gmail.com
+    license: GPLv3
+    license-url: https://raw.githubusercontent.com/ghacupha/contacts-react/master/LICENSE
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
