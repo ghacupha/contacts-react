@@ -1,6 +1,7 @@
 package io.github.contacts.internal.excel;
 
 import io.github.contacts.ContactsApp;
+import io.github.contacts.internal.model.ContactEVM;
 import io.github.contacts.internal.model.sampleDataModel.CurrencyTableEVM;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class ExcelFileUtilsIT {
     @Autowired
     private ExcelFileDeserializer<CurrencyTableEVM> currencyTableEVMExcelFileDeserializer;
 
+    @Autowired
+    private ExcelFileDeserializer<ContactEVM> deserializer;
+
     @Test
     public void deserializeCurrencyTableFile() throws Exception {
 
@@ -42,5 +46,25 @@ public class ExcelFileUtilsIT {
         assertThat(currencies.get(4)).isEqualTo(CurrencyTableEVM.builder().rowIndex(5).country("SWITZERLAND").currencyCode("CHF").currencyName("SWISS FRANC").locality("FOREIGN").build());
         assertThat(currencies.get(5)).isEqualTo(CurrencyTableEVM.builder().rowIndex(6).country("SOUTH AFRICA").currencyCode("ZAR").currencyName("SOUTH AFRICAN RAND").locality("FOREIGN").build());
         assertThat(currencies.get(12)).isEqualTo(CurrencyTableEVM.builder().rowIndex(13).country("CHINA").currencyCode("CNY").currencyName("CHINESE YUAN").locality("FOREIGN").build());
+    }
+
+    @Test
+    public void contactsFile() throws Exception {
+
+        List<ContactEVM> evms = deserializer.deserialize(toBytes(readFile("contacts.xlsx")));
+
+        assertThat(evms.size()).isEqualTo(5145);
+
+        for (int i = 0; i < 5145; i++) {
+            String index = String.valueOf(i + 1);
+            assertThat(evms.get(i)).isEqualTo(ContactEVM.builder()
+                .id(Long.valueOf(index))
+                .contactName("CONTACT NAME " + index)
+                .department("DEPARTMENT " + index)
+                .telephoneExtension("TEL EXTENSION " + index)
+                .phoneNumber("PHONE NUMBER " + index)
+                .build()
+            );
+        }
     }
 }

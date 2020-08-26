@@ -89,16 +89,16 @@ public class ContactBatchConfig {
         // @formatter:off
         return stepBuilderFactory.get("readContactListFromFile")
             .<List<ContactEVM>, List<ContactDTO>>chunk(2)
-            .reader(currencyTableItemReader(fileId))
+            .reader(contactListItemReader(fileId))
             .processor(contactItemProcessor())
             .writer(contactItemWriter())
             .build();
         // @formatter:off
     }
 
-    @Bean("currencyTableItemReader")
+    @Bean("contactListItemReader")
     @JobScope
-    public ContactListItemReader currencyTableItemReader(@Value("#{jobParameters['fileId']}") long fileId) {
+    public ContactListItemReader contactListItemReader(@Value("#{jobParameters['fileId']}") long fileId) {
 
         return new ContactListItemReader(deserializer, fileUploadService, fileId, fileUploadsProperties);
     }
