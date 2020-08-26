@@ -49,6 +49,7 @@ public class CacheConfiguration {
             createCache(cm, io.github.contacts.domain.User.class.getName() + ".authorities");
             createCache(cm, io.github.contacts.domain.PersistentToken.class.getName());
             createCache(cm, io.github.contacts.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, io.github.contacts.domain.Contact.class.getName());
             // jhipster-needle-caffeine-add-entry
         };
     }
