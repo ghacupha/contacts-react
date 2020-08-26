@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 // todo loop for every file model type
+import static io.github.contacts.domain.enumeration.ContactsFileModelType.CONTACTS;
 import static io.github.contacts.domain.enumeration.ContactsFileModelType.CURRENCY_LIST;
 
 /**
@@ -24,6 +25,10 @@ public class FileUploadProcessorContainer {
     @Qualifier("currencyTablePersistenceJob")
     private Job currencyTablePersistenceJob;
 
+    @Autowired
+    @Qualifier("contactPersistenceJob")
+    private Job contactPersistenceJob;
+
     @Bean("fileUploadProcessorChain")
     public FileUploadProcessorChain fileUploadProcessorChain() {
 
@@ -31,13 +36,7 @@ public class FileUploadProcessorContainer {
 
         // Create the chain, each should match against it's specific key of data-model type
         theChain.addProcessor(new BatchSupportedFileUploadProcessor(jobLauncher, currencyTablePersistenceJob, CURRENCY_LIST));
-
-        // TODO Add processors for each data model type
-        //theChain.addProcessor(new BatchSupportedFileUploadProcessor(jobLauncher, schemeTablePersistenceJob, SCHEME_LIST));
-        //theChain.addProcessor(new BatchSupportedFileUploadProcessor(jobLauncher, branchTablePersistenceJob, BRANCH_LIST));
-        //theChain.addProcessor(new BatchSupportedFileUploadProcessor(jobLauncher, sbuTablePersistenceJob, SBU_LIST));
-        //theChain.addProcessor(new BatchSupportedFileUploadProcessor(jobLauncher, typeTablePersistenceJob, GENERAL_LEDGERS));
-        //theChain.addProcessor(new BatchSupportedFileUploadProcessor(jobLauncher, depositAccountPersistenceJob, DEPOSIT_LIST));
+        theChain.addProcessor(new BatchSupportedFileUploadProcessor(jobLauncher, contactPersistenceJob, CONTACTS));
 
         return theChain;
     }

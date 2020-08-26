@@ -293,6 +293,7 @@ dependencies {
     annotationProcessor "org.hibernate:hibernate-jpamodelgen:${hibernate_version}"
     annotationProcessor "org.glassfish.jaxb:jaxb-runtime:${jaxb_runtime_version}"
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${spring_boot_version}"
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
     testImplementation "io.cucumber:cucumber-junit"
     testImplementation "io.cucumber:cucumber-spring"
     testImplementation ("org.springframework.boot:spring-boot-starter-test") {
@@ -303,8 +304,11 @@ dependencies {
     testRuntimeOnly "com.tngtech.archunit:archunit-junit5-engine:${archunit_junit5_version}"
     testImplementation "com.h2database:h2"
     liquibaseRuntime "com.h2database:h2"
-    compile "com.github.ozlerhakan:poiji:1.20.0"
+    compile "com.github.ozlerhakan:poiji:${poiji_version}"
     compile "org.springframework.boot:spring-boot-starter-batch:1.18.6"
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compile "org.projectlombok:lombok:${lombok_version}"
+
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
 

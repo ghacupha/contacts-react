@@ -113,7 +113,7 @@ export default (state: ContactsFileUploadState = initialState, action): Contacts
   }
 };
 
-const apiUrl = 'api/contacts-file-uploads';
+const apiUrl = 'api/app/file-uploads';
 const apiSearchUrl = 'api/_search/contacts-file-uploads';
 
 // Actions

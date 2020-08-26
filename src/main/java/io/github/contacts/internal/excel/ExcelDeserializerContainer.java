@@ -1,6 +1,7 @@
 package io.github.contacts.internal.excel;
 
 import io.github.contacts.internal.excel.deserializer.DefaultExcelFileDeserializer;
+import io.github.contacts.internal.model.ContactEVM;
 import io.github.contacts.internal.model.sampleDataModel.CurrencyTableEVM;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,11 @@ public class ExcelDeserializerContainer {
     @Bean("currencyTableExcelFileDeserializer")
     public ExcelFileDeserializer<CurrencyTableEVM> currencyTableExcelFileDeserializer() {
         return excelFile -> new DefaultExcelFileDeserializer<>(CurrencyTableEVM.class, getDefaultPoijiOptions()).deserialize(excelFile);
+    }
+
+    @Bean("contactExcelFileDeserializer")
+    public ExcelFileDeserializer<ContactEVM> contactExcelFileDeserializer() {
+        return excelFile -> new DefaultExcelFileDeserializer<>(ContactEVM.class, getDefaultPoijiOptions()).deserialize(excelFile);
     }
 
     // todo create bean for every data model

@@ -1,14 +1,13 @@
-package io.github.contacts.internal.batch.currencyTable;
+package io.github.contacts.internal.batch.contact;
 
 import com.google.common.collect.ImmutableList;
 import io.github.contacts.config.FileUploadsProperties;
 import io.github.contacts.internal.Mapping;
 import io.github.contacts.internal.excel.ExcelFileDeserializer;
+import io.github.contacts.internal.model.ContactEVM;
 import io.github.contacts.internal.service.BatchService;
 import io.github.contacts.service.ContactsFileUploadService;
-// todo replace these entities with entity names from client
-import io.github.contacts.internal.model.sampleDataModel.CurrencyTableEVM;
-import io.github.contacts.service.dto.CurrencyTableDTO;
+import io.github.contacts.service.dto.ContactDTO;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
@@ -25,11 +24,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-/**
- * This is a sample batch configuration for the currency-table
- */
 @Configuration
-public class CurrencyTableBatchConfig {
+public class ContactBatchConfig {
+
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -38,7 +35,7 @@ public class CurrencyTableBatchConfig {
     public StepBuilderFactory stepBuilderFactory;
 
     @Autowired
-    private ExcelFileDeserializer<CurrencyTableEVM> deserializer;
+    private ExcelFileDeserializer<ContactEVM> deserializer;
 
     @Autowired
     private ContactsFileUploadService fileUploadService;
@@ -56,53 +53,53 @@ public class CurrencyTableBatchConfig {
     private JobExecutionListener persistenceJobListener;
 
     @Autowired
-    private BatchService<CurrencyTableDTO> currencyTableDTOBatchService;
+    private BatchService<ContactDTO> contactBatchService;
 
     @Autowired
-    private Mapping<CurrencyTableEVM, CurrencyTableDTO> mapping;
+    private Mapping<ContactEVM, ContactDTO> mapping;
 
 
-    @Bean("currencyTablePersistenceJob")
-    public Job currencyTablePersistenceJob() {
+    @Bean("contactPersistenceJob")
+    public Job contactPersistenceJob() {
         // @formatter:off
-        return jobBuilderFactory.get("currencyTablePersistenceJob")
-                                .preventRestart()
-                                .listener(persistenceJobListener)
-                                .incrementer(new RunIdIncrementer())
-                                .flow(readCurrencyListFromFile())
-                                .end()
-                                .build();
+        return jobBuilderFactory.get("contactPersistenceJob")
+            .preventRestart()
+            .listener(persistenceJobListener)
+            .incrementer(new RunIdIncrementer())
+            .flow(readContactListFromFile())
+            .end()
+            .build();
         // @formatter:on
     }
 
     @Bean
-    public ItemWriter<List<CurrencyTableDTO>> currencyTableItemWriter() {
+    public ItemWriter<List<ContactDTO>> contactItemWriter() {
 
-        return items -> items.stream().peek(currencyTableDTOBatchService::save).forEach(currencyTableDTOBatchService::index);
+        return items -> items.stream().peek(contactBatchService::save).forEach(contactBatchService::index);
     }
 
     @Bean
-    public ItemProcessor<List<CurrencyTableEVM>, List<CurrencyTableDTO>> currencyTableItemProcessor() {
+    public ItemProcessor<List<ContactEVM>, List<ContactDTO>> contactItemProcessor() {
 
         return evms -> evms.stream().map(mapping::toValue2).collect(ImmutableList.toImmutableList());
     }
 
-    @Bean("readCurrencyListFromFile")
-    public Step readCurrencyListFromFile() {
+    @Bean("readContactListFromFile")
+    public Step readContactListFromFile() {
         // @formatter:off
-        return stepBuilderFactory.get("readCurrencyListFromFile")
-            .<List<CurrencyTableEVM>, List<CurrencyTableDTO>>chunk(2)
+        return stepBuilderFactory.get("readContactListFromFile")
+            .<List<ContactEVM>, List<ContactDTO>>chunk(2)
             .reader(currencyTableItemReader(fileId))
-            .processor(currencyTableItemProcessor())
-            .writer(currencyTableItemWriter())
+            .processor(contactItemProcessor())
+            .writer(contactItemWriter())
             .build();
         // @formatter:off
     }
 
     @Bean("currencyTableItemReader")
     @JobScope
-    public CurrencyTableListItemReader currencyTableItemReader(@Value("#{jobParameters['fileId']}") long fileId) {
+    public ContactListItemReader currencyTableItemReader(@Value("#{jobParameters['fileId']}") long fileId) {
 
-        return new CurrencyTableListItemReader(deserializer, fileUploadService, fileId, fileUploadsProperties);
+        return new ContactListItemReader(deserializer, fileUploadService, fileId, fileUploadsProperties);
     }
 }
