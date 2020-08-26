@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/contacts
-    username: contacts
-    password:
+    url: jdbc:postgresql://localhost:8981/contacts
+    username: ${PG_DATABASE_DEV_USER}
+    password: ${PG_DATABASE_DEV_PASSWORD}
     hikari:
       poolName: Hikari
       auto-commit: false

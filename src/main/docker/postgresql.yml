@@ -2,11 +2,12 @@ version: '2'
 services:
   contacts-postgresql:
     image: postgres:12.3
-    # volumes:
-    #     - ~/volumes/jhipster/contacts/postgresql/:/var/lib/postgresql/data/
+    volumes:
+      - ~/volumes/jhipster/contacts/postgresql/:/var/lib/contactsApp/data/
     environment:
-      - POSTGRES_USER=contacts
-      - POSTGRES_PASSWORD=
+      - POSTGRES_USER=${PG_DATABASE_DEV_USER}
+      - POSTGRES_PASSWORD=${PG_DATABASE_DEV_PASSWORD}
+      - POSTGRES_DB=contacts
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
-      - 5432:5432
+      - 8981:5432
