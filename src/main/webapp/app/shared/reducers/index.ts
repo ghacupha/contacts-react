@@ -16,6 +16,22 @@ import sessions, { SessionsState } from 'app/modules/account/sessions/sessions.r
 import contact, {
   ContactState
 } from 'app/entities/contact/contact.reducer';
+// prettier-ignore
+import contactsFileType, {
+  ContactsFileTypeState
+} from 'app/entities/contacts/contacts-file-type/contacts-file-type.reducer';
+// prettier-ignore
+import contactsFileUpload, {
+  ContactsFileUploadState
+} from 'app/entities/contacts/contacts-file-upload/contacts-file-upload.reducer';
+// prettier-ignore
+import contactsMessageToken, {
+  ContactsMessageTokenState
+} from 'app/entities/contacts/contacts-message-token/contacts-message-token.reducer';
+// prettier-ignore
+import currencyTable, {
+  CurrencyTableState
+} from 'app/entities/contacts/currency-table/currency-table.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -30,6 +46,10 @@ export interface IRootState {
   readonly settings: SettingsState;
   readonly sessions: SessionsState;
   readonly contact: ContactState;
+  readonly contactsFileType: ContactsFileTypeState;
+  readonly contactsFileUpload: ContactsFileUploadState;
+  readonly contactsMessageToken: ContactsMessageTokenState;
+  readonly currencyTable: CurrencyTableState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -46,6 +66,10 @@ const rootReducer = combineReducers<IRootState>({
   settings,
   sessions,
   contact,
+  contactsFileType,
+  contactsFileUpload,
+  contactsMessageToken,
+  currencyTable,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

@@ -11,6 +11,18 @@ export const EntitiesMenu = props => (
     <MenuItem icon="asterisk" to="/contact">
       Contact
     </MenuItem>
+    <MenuItem icon="asterisk" to="/contacts-file-type">
+      Contacts File Type
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/contacts-file-upload">
+      Contacts File Upload
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/contacts-message-token">
+      Contacts Message Token
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/currency-table">
+      Currency Table
+    </MenuItem>
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
 );

@@ -15,6 +15,11 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200809141735_added_entity_Contact.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200826144449_added_springbatch_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200826144600_added_entity_ContactsFileType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200826144700_added_entity_ContactsFileUpload.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200826144800_added_entity_ContactsMessageToken.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200826144900_added_entity_CurrencyTable.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->

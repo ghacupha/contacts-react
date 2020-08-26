@@ -1,0 +1,47 @@
+{
+  "name": "ContactsFileType",
+  "fields": [
+    {
+      "fieldName": "contactsFileTypeName",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "unique"
+      ]
+    },
+    {
+      "fieldName": "contactsFileMediumType",
+      "fieldType": "ContactsFileMediumTypes",
+      "fieldValues": "EXCEL,EXCEL_XLS,EXCEL_XLSX,EXCEL_XLSB,EXCEL_CSV,EXCEL_XML,PDF,POWERPOINT,DOC,TEXT,JSON,HTML5",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fileTemplate",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "contactsfileType",
+      "fieldType": "ContactsFileModelType",
+      "fieldValues": "CURRENCY_LIST,CONTACTS"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200826144600",
+  "entityTableName": "contacts_file_type",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "contacts",
+  "applications": "*"
+}

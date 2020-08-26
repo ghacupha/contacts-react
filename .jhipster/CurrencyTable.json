@@ -1,0 +1,45 @@
+{
+  "name": "CurrencyTable",
+  "fields": [
+    {
+      "fieldName": "currencyCode",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique",
+        "minlength",
+        "maxlength"
+      ],
+      "fieldValidateRulesMinlength": "3",
+      "fieldValidateRulesMaxlength": "3"
+    },
+    {
+      "fieldName": "locality",
+      "fieldType": "CurrencyLocality",
+      "fieldValues": "LOCAL,FOREIGN",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "currencyName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200826144900",
+  "entityTableName": "currency_table",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "contacts",
+  "applications": "*",
+  "searchEngine": "elasticsearch"
+}

@@ -36,5 +36,13 @@
     "otherModules": [],
     "enableTranslation": false,
     "blueprints": []
+  },
+  "generator-jhipster-file-handling": {
+    "promptValues": {
+      "gatewayMicroserviceName": "contacts",
+      "generalClientRootFolder": "fileUploads",
+      "fileModelTypes": "CONTACTS"
+    },
+    "lastLiquibaseTimestamp": 1598453089000
   }
 }

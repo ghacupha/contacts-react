@@ -50,6 +50,10 @@ public class CacheConfiguration {
             createCache(cm, io.github.contacts.domain.PersistentToken.class.getName());
             createCache(cm, io.github.contacts.domain.User.class.getName() + ".persistentTokens");
             createCache(cm, io.github.contacts.domain.Contact.class.getName());
+            createCache(cm, io.github.contacts.domain.ContactsFileType.class.getName());
+            createCache(cm, io.github.contacts.domain.ContactsFileUpload.class.getName());
+            createCache(cm, io.github.contacts.domain.ContactsMessageToken.class.getName());
+            createCache(cm, io.github.contacts.domain.CurrencyTable.class.getName());
             // jhipster-needle-caffeine-add-entry
         };
     }

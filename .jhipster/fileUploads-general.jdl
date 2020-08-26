@@ -1,0 +1,58 @@
+entity ContactsFileType {
+contactsFileTypeName String required unique,
+contactsFileMediumType ContactsFileMediumTypes required,
+description String,
+fileTemplate AnyBlob,
+contactsfileType ContactsFileModelType
+}
+entity ContactsFileUpload {
+description String required,
+fileName String required unique,
+periodFrom LocalDate,
+periodTo LocalDate,
+contactsFileTypeId Long required,
+dataFile AnyBlob required,
+uploadSuccessful Boolean,
+uploadProcessed Boolean,
+uploadToken String unique
+}
+entity ContactsMessageToken {
+description String,
+timeSent Long required,
+tokenValue String required,
+received Boolean,
+actioned Boolean,
+contentFullyEnqueued Boolean
+}
+entity CurrencyTable {
+currencyCode String unique minlength(3) maxlength(3),
+locality CurrencyLocality required,
+currencyName String,
+country String
+}
+enum CurrencyLocality {
+LOCAL,
+FOREIGN
+}
+enum ContactsFileMediumTypes {
+EXCEL,
+EXCEL_XLS,
+EXCEL_XLSX,
+EXCEL_XLSB,
+EXCEL_CSV,
+EXCEL_XML,
+PDF,
+POWERPOINT,
+DOC,
+TEXT,
+JSON,
+HTML5
+}
+enum ContactsFileModelType { CURRENCY_LIST,CONTACTS }
+dto ContactsFileUpload, ContactsMessageToken, CurrencyTable with mapstruct
+paginate ContactsFileType, ContactsFileUpload, ContactsMessageToken, CurrencyTable with pagination
+service ContactsFileUpload, ContactsMessageToken, CurrencyTable with serviceImpl
+service ContactsFileType with serviceClass
+search CurrencyTable with elasticsearch
+filter ContactsFileType, ContactsFileUpload, ContactsMessageToken, CurrencyTable
+clientRootFolder ContactsFileType, ContactsFileUpload, ContactsMessageToken, CurrencyTable with contacts
