@@ -20,11 +20,20 @@ export const Brand = props => (
   </NavbarBrand>
 );
 
-export const Home = props => (
+export const Contacts = props => (
+  <NavItem>
+    <NavLink tag={Link} to="/contact" className="d-flex align-items-center">
+      <FontAwesomeIcon icon="home" />
+      <span>Contacts</span>
+    </NavLink>
+  </NavItem>
+);
+
+export const About = props => (
   <NavItem>
     <NavLink tag={Link} to="/" className="d-flex align-items-center">
-      <FontAwesomeIcon icon="home" />
-      <span>Home</span>
+      <FontAwesomeIcon icon="eye" />
+      <span>About</span>
     </NavLink>
   </NavItem>
 );
