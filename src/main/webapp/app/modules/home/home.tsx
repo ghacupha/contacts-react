@@ -30,9 +30,9 @@ export const Home = (props: IHomeProp) => {
                 {' '}
                 sign in
               </Link>
-              , you can try the default accounts:
-              <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
-              <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
+              {/*, you can try the default accounts:*/}
+              {/*<br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)*/}
+              {/*<br />- User (login=&quot;user&quot; and password=&quot;user&quot;).*/}
             </Alert>
 
             <Alert color="warning">
@@ -75,7 +75,7 @@ export const Home = (props: IHomeProp) => {
 
         <p>
           If you like JHipster, do not forget to give us a star on{' '}
-          <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/ghacupha/contacts-react" target="_blank" rel="noopener noreferrer">
             Github
           </a>
           !
