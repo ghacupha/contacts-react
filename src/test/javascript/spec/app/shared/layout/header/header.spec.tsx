@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import LoadingBar from 'react-redux-loading-bar';
 import { Navbar, Nav } from 'reactstrap';
 
-import { Home, Brand } from 'app/shared/layout/header/header-components';
+import { Contacts, About, Brand } from 'app/shared/layout/header/header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu } from 'app/shared/layout/menus';
 import Header from 'app/shared/layout/header/header';
 
@@ -56,7 +56,8 @@ describe('Header', () => {
     expect(navbar.find(Brand).length).toEqual(1);
     const nav = component.find(Nav);
     expect(nav.length).toEqual(1);
-    expect(nav.find(Home).length).toEqual(1);
+    expect(nav.find(Contacts).length).toEqual(1);
+    expect(nav.find(About).length).toEqual(1);
     expect(nav.find(AdminMenu).length).toEqual(1);
     expect(nav.find(EntitiesMenu).length).toEqual(1);
 
@@ -74,7 +75,8 @@ describe('Header', () => {
     expect(navbar.find(Brand).length).toEqual(1);
     const nav = component.find(Nav);
     expect(nav.length).toEqual(1);
-    expect(nav.find(Home).length).toEqual(1);
+    expect(nav.find(Contacts).length).toEqual(1);
+    expect(nav.find(About).length).toEqual(1);
     expect(nav.find(AdminMenu).length).toEqual(1);
     expect(nav.find(EntitiesMenu).length).toEqual(1);
 
@@ -86,7 +88,6 @@ describe('Header', () => {
   it('Renders a Header component in prod profile with logged in User', () => {
     const nav = wrapper(userProps).find(Nav);
     expect(nav.find(AdminMenu).length).toEqual(0);
-    expect(nav.find(EntitiesMenu).length).toEqual(1);
     const account = nav.find(AccountMenu);
     expect(account.first().props().isAuthenticated).toEqual(true);
   });
